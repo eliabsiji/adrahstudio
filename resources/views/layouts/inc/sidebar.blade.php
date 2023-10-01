@@ -168,7 +168,7 @@
 
 
 
-                    <!--begin:Menu item-->
+                    {{-- <!--begin:Menu item-->
                     <div class="menu-item pt-5">
                         <!--begin:Menu content-->
                         <div class="menu-content">
@@ -1388,7 +1388,7 @@
                         <!--end:Menu link-->
                     </div>
                     <!--end:Menu item-->
-
+ --}}
 
 
 

@@ -88,7 +88,7 @@
 
             <!--begin::Title-->
             <h2 class="text-white fw-normal m-0">
-                AdrahStudio
+                <img alt="Logo" src="{{ asset('html/assets/assets/media/logos/logo.png')}}" class="h-100px app-sidebar-logo-default"/> AdrahStudios
             </h2>
             <!--end::Title-->
         </div>
@@ -109,7 +109,7 @@
     <!--begin::Heading-->
     <div class="text-center mb-11">
         <a href="/dashboard">
-            <img alt="Logo" src="{{ asset('html/assets/assets/media/logos/logo.png')}}" class="h-100px app-sidebar-logo-default"/>
+
 
 
         </a>

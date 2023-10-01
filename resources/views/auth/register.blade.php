@@ -2,28 +2,28 @@
 
 <html lang="en" >
     <!--begin::Head-->
-    
+
 <!-- Mirrored from preview.keenthemes.com/metronic8/demo1/authentication/layouts/creative/sign-in.html')}} by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 12 Jun 2023 04:07:02 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
-        <title>Metronic - The World's #1 Selling Bootstrap Admin Template by Keenthemes</title>
+      <title>Login | Adrahstudios</title>
         <meta charset="utf-8"/>
-       
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>      
-     
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
         <link rel="shortcut icon" href="{{ asset('html/assets/assets/media/logos/favicon.ico')}}"/>
 
         <!--begin::Fonts(mandatory for all pages)-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>        <!--end::Fonts-->
 
-        
-        
+
+
                     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
                             <link href="{{ asset('html/assets/assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css"/>
                             <link href="{{ asset('html/assets/assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css"/>
                         <!--end::Global Stylesheets Bundle-->
-        
-        
+
+
         <script>
             // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking)
             if (window.top != window.self) {
@@ -48,7 +48,7 @@
 				themeMode = localStorage.getItem("data-bs-theme");
 			} else {
 				themeMode = defaultThemeMode;
-			}			
+			}
 		}
 
 		if (themeMode === "system") {
@@ -56,13 +56,13 @@
 		}
 
 		document.documentElement.setAttribute("data-bs-theme", themeMode);
-	}            
+	}
 </script>
-<!--end::Theme mode setup on page load-->            
+<!--end::Theme mode setup on page load-->
                     <!--Begin::Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html')}}?id=GTM-5FS8GGP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!--End::Google Tag Manager (noscript) -->
-        
+
         <!--begin::Root-->
 <div class="d-flex flex-column flex-root" id="kt_app_root">
     <!--begin::Page bg image-->
@@ -80,22 +80,22 @@
 <!--begin::Authentication - Sign-in -->
 <div class="d-flex flex-column flex-column-fluid flex-lg-row">
     <!--begin::Aside-->
-    <div class="d-flex flex-center w-lg-50 pt-15 pt-lg-0 px-10">              
+    <div class="d-flex flex-center w-lg-50 pt-15 pt-lg-0 px-10">
         <!--begin::Aside-->
-        <div class="d-flex flex-center flex-lg-start flex-column">              
+        <div class="d-flex flex-center flex-lg-start flex-column">
             <!--begin::Logo-->
             <a href="{{ asset('html/assets/index.html')}}" class="mb-7">
                 <img alt="Logo" src="{{ asset('html/assets/assets/media/logos/scroll.png')}}" height="60px" width="60px"/>
-            </a>    
-            <!--end::Logo-->            
+            </a>
+            <!--end::Logo-->
 
             <!--begin::Title-->
-            <h2 class="text-white fw-normal m-0"> 
-                Staff tools designed organisation daily operations
-            </h2>  
-            <!--end::Title-->         
+            <h2 class="text-white fw-normal m-0">
+                <img alt="Logo" src="{{ asset('html/assets/assets/media/logos/logo.png')}}" class="h-100px app-sidebar-logo-default"/> Adrahstudios
+            </h2>
+            <!--end::Title-->
         </div>
-        <!--begin::Aside-->    
+        <!--begin::Aside-->
     </div>
     <!--begin::Aside-->
 
@@ -105,8 +105,8 @@
         <div class="bg-body d-flex flex-column align-items-stretch flex-center rounded-4 w-md-600px p-20">
             <!--begin::Wrapper-->
             <div class="d-flex flex-center flex-column flex-column-fluid px-lg-10 pb-15 pb-lg-20">
- 
-                                    
+
+
 <!--begin::Form-->
 <form class="form w-100" method="POST" action="{{ route('register') }}" novalidate="novalidate" id="kt_sign_up_form" >
     @csrf
@@ -118,7 +118,7 @@
         </h1>
         <!--end::Title-->
 
-    
+
     </div>
     <!--begin::Heading-->
 
@@ -129,7 +129,7 @@
     <!--begin::Input group--->
     <div class="fv-row mb-8">
         <!--begin::Email-->
-        <input type="text" placeholder="Full Name"   class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus/> 
+        <input type="text" placeholder="Full Name"   class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus/>
         <!--end::Email-->
 
         @error('name')
@@ -142,7 +142,7 @@
       <!--begin::Input group--->
       <div class="fv-row mb-8">
         <!--begin::Email-->
-        <input type="text" placeholder="Email"   class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus/> 
+        <input type="text" placeholder="Email"   class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus/>
         <!--end::Email-->
 
         @error('email')
@@ -157,12 +157,12 @@
         <!--begin::Wrapper-->
         <div class="mb-1">
             <!--begin::Input wrapper-->
-            <div class="position-relative mb-3">    
+            <div class="position-relative mb-3">
                 <input class="form-control bg-transparent @error('password') is-invalid @enderror"  required autocomplete="new-password"" type="password" placeholder="Password" name="password"/>
 
                 <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
-                    <i class="ki-duotone ki-eye-slash fs-2"></i>  
-                    
+                    <i class="ki-duotone ki-eye-slash fs-2"></i>
+
                     <i class="ki-duotone ki-eye fs-2 d-none"></i>                </span>
 
                     @error('password')
@@ -193,7 +193,7 @@
     <!--end::Input group--->
 
     <!--end::Input group--->
-    <div class="fv-row mb-8">    
+    <div class="fv-row mb-8">
         <!--begin::Repeat Password-->
         <input type="text" placeholder="Repeat Password" name="password_confirmation" type="password" autocomplete="off" class="form-control bg-transparent"/>
         <!--end::Repeat Password-->
@@ -214,7 +214,7 @@
     <!--begin::Submit button-->
     <div class="d-grid mb-10">
         <button type="submit" id="kt_sign_up_submit" class="btn btn-primary">
-            
+
 <!--begin::Indicator label-->
 <span class="indicator-label">
     Sign up</span>
@@ -227,7 +227,7 @@
 <!--end::Indicator progress-->        </button>
     </div>
     <!--end::Submit button-->
-   
+
     <!--begin::Sign up-->
     <div class="text-gray-500 text-center fw-semibold fs-6">
         Already have an Account?
@@ -238,15 +238,15 @@
     </div>
     <!--end::Sign up-->
 </form>
-<!--end::Form--> 
+<!--end::Form-->
 
 
             </div>
             <!--end::Wrapper-->
 
-            <!--begin::Footer-->  
+            <!--begin::Footer-->
             <div class="d-flex flex-stack px-lg-10">
-             
+
                 <!--begin::Links-->
                 <div class="d-flex fw-semibold text-primary fs-base gap-5">
                     <a href="#" target="_blank">About Qudroid Systems</a>
@@ -262,7 +262,7 @@
 </div>
 <!--end::Authentication - Sign-in--></div>
 <!--end::Root-->
-        
+
         <!--begin::Javascript-->
         <script>
             var hostUrl = "{{ asset('html/assets/assets/index.html')}}";        </script>
@@ -271,13 +271,13 @@
                             <script src="{{ asset('html/assets/assets/plugins/global/plugins.bundle.js')}}"></script>
                             <script src="{{ asset('html/assets/assets/js/scripts.bundle.js')}}"></script>
                         <!--end::Global Javascript Bundle-->
-        
-        
+
+
                     <!--begin::Custom Javascript(used for this page only)-->
                             <script src="{{ asset('html/assets/assets/js/custom/authentication/sign-in/general.js')}}"></script>
                         <!--end::Custom Javascript-->
                 <!--end::Javascript-->
-        
+
             </body>
     <!--end::Body-->
 

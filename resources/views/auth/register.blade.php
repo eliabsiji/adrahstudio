@@ -83,11 +83,7 @@
     <div class="d-flex flex-center w-lg-50 pt-15 pt-lg-0 px-10">
         <!--begin::Aside-->
         <div class="d-flex flex-center flex-lg-start flex-column">
-            <!--begin::Logo-->
-            <a href="{{ asset('html/assets/index.html')}}" class="mb-7">
-                <img alt="Logo" src="{{ asset('html/assets/assets/media/logos/logo.png')}}" class="h-100px app-sidebar-logo-default"/> Adrahstudios
-            </a>
-            <!--end::Logo-->
+
 
             <!--begin::Title-->
             <h2 class="text-white fw-normal m-0">

@@ -85,7 +85,7 @@
         <div class="d-flex flex-center flex-lg-start flex-column">
             <!--begin::Logo-->
             <a href="{{ asset('html/assets/index.html')}}" class="mb-7">
-                <img alt="Logo" src="{{ asset('html/assets/assets/media/logos/scroll.png')}}" height="60px" width="60px"/>
+                <img alt="Logo" src="{{ asset('html/assets/assets/media/logos/logo.png')}}" class="h-100px app-sidebar-logo-default"/> Adrahstudios
             </a>
             <!--end::Logo-->
 

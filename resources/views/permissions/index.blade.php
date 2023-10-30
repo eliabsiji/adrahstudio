@@ -9,16 +9,16 @@ use Spatie\Permission\Models\Role;
             <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
                 <!--begin::Content wrapper-->
                 <div class="d-flex flex-column flex-column-fluid">
-                                            
+
 <!--begin::Toolbar-->
-<div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 " 
-     
+<div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 "
+
          >
 
             <!--begin::Toolbar container-->
         <div id="kt_app_toolbar_container" class="app-container  container-xxl d-flex flex-stack ">
-            
-    
+
+
 
 <!--begin::Page title-->
 <div  class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
@@ -28,7 +28,7 @@ use Spatie\Permission\Models\Role;
             </h1>
     <!--end::Title-->
 
-            
+
         <!--begin::Breadcrumb-->
         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <!--begin::Item-->
@@ -42,36 +42,36 @@ use Spatie\Permission\Models\Role;
                         <span class="bullet bg-gray-400 w-5px h-2px"></span>
                     </li>
                     <!--end::Item-->
-                                        
+
                             <!--begin::Item-->
                                     <li class="breadcrumb-item text-muted">
                                                     User Management                                            </li>
                                 <!--end::Item-->
-                                        
+
                     </ul>
         <!--end::Breadcrumb-->
     </div>
 <!--end::Page title-->
 
 
-<div class="alert alert-success alert-dismissible fade show" role="alert">
+{{-- <div class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>Holy guacamole!</strong> You should check in on some of those fields below.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
+  </div> --}}
 
 
         </div>
         <!--end::Toolbar container-->
     </div>
-<!--end::Toolbar-->                                        
-                    
+<!--end::Toolbar-->
+
 <!--begin::Content-->
 <div id="kt_app_content" class="app-content  flex-column-fluid " >
-    
-           
+
+
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container  container-xxl ">
-            
+
 <!--begin::Card-->
 <div class="card card-flush ">
     <!--begin::Card header-->
@@ -97,10 +97,10 @@ use Spatie\Permission\Models\Role;
         <!--end::Card toolbar-->
     </div>
     <!--end::Card header-->
-    
+
     <!--begin::Card body-->
     <div class="card-body pt-0">
-    
+
  <!--begin::Table-->
         <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0" >
             <thead>
@@ -112,17 +112,17 @@ use Spatie\Permission\Models\Role;
                 </tr>
             </thead>
             <tbody class="fw-semibold text-gray-600">
-               
-                
-                
+
+
+
                 <?php
-                    
-                    foreach ($data as $permission) { 
+
+                    foreach ($data as $permission) {
                     $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.permission_id",$permission->id)
                     ->leftJoin('roles', 'roles.id','=','role_has_permissions.role_id')
-                    ->get(['roles.name as name']);  
+                    ->get(['roles.name as name','roles.badge as badge']);
                 ?>
-                      
+
                     <tr>
                         <td>
                                 <!--begin::User details-->
@@ -133,12 +133,12 @@ use Spatie\Permission\Models\Role;
                         <!--begin::User details-->
                         </td>
                         <td>
-                             @foreach ($rolePermissions as $r) 
-                         <a href="{{ route('roles.index',) }}" class="badge badge-light-primary fs-7 m-1">{{ $r->name }}</a>
-                              @endforeach        
+                             @foreach ($rolePermissions as $r)
+                         <a href="{{ route('roles.index',) }}" class="{{ $r->badge }} fs-7 m-1">{{ $r->name }}</a>
+                              @endforeach
                         </td>
                         <td>
-                            {{ $permission->created_at }}                      
+                            {{ $permission->created_at }}
                         </td>
                         <td class="text-end">
                             <button class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_permission">
@@ -147,15 +147,15 @@ use Spatie\Permission\Models\Role;
                                 <i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>                            </button>
                         </td>
                     </tr>
-                    
+
                 <?php } ?>
 
-                             
+
              </tbody>
         </table>
         <!--end::Table-->
     </div>
-        
+
     <!--end::Card body-->
 </div>
 <!--end::Card-->
@@ -265,23 +265,23 @@ use Spatie\Permission\Models\Role;
             <!--begin::Modal body-->
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                 <!--begin::Notice-->
-                
+
 <!--begin::Notice-->
 <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-9 p-6">
             <!--begin::Icon-->
         <i class="ki-duotone ki-information fs-2tx text-warning me-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>        <!--end::Icon-->
-    
+
     <!--begin::Wrapper-->
     <div class="d-flex flex-stack flex-grow-1 ">
                     <!--begin::Content-->
             <div class=" fw-semibold">
-                
+
                                     <div class="fs-6 text-gray-700 "><strong class="me-1">Warning!</strong> By editing the permission name, you might break the system permissions functionality. Please ensure you're absolutely certain before proceeding.</div>
                             </div>
             <!--end::Content-->
-        
+
             </div>
-    <!--end::Wrapper-->  
+    <!--end::Wrapper-->
 </div>
 <!--end::Notice-->
                 <!--end::Notice-->
@@ -333,6 +333,6 @@ use Spatie\Permission\Models\Role;
 <!--end::Modal - Update permissions--><!--end::Modals-->        </div>
         <!--end::Content container-->
     </div>
-<!--end::Content-->					
-              
-@endsection  
+<!--end::Content-->
+
+@endsection

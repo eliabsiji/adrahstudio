@@ -87,8 +87,15 @@ class UserController extends Controller
     public function show($id): View
     {
         $user = User::find($id);
-        return view('users.show',compact('user'));
+        $userroles = $user->roles->all();
+        $userbio = $user->bio;
+        return view('users.overview',compact('user'),
+        compact('userroles'))
+        ->with("userbio",$userbio);
     }
+
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -151,4 +158,25 @@ class UserController extends Controller
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
     }
+
+     // delete user
+     public function delete($id)
+     {
+         $delete = User::destroy($id);
+
+         // check data deleted or not
+         if ($delete == 1) {
+             $success = true;
+             $message = "User deleted successfully";
+         } else {
+             $success = true;
+             $message = "User not found";
+         }
+
+         //  return response
+         return response()->json([
+             'success' => $success,
+             'message' => $message,
+         ]);
+     }
 }

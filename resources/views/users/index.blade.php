@@ -1,6 +1,10 @@
 @extends('layouts.master')
 @section('content')
-
+<?php
+use Spatie\Permission\Models\Permission;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
+?>
             <!--begin::Main-->
             <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
                 <!--begin::Content wrapper-->
@@ -153,7 +157,7 @@
         <select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-user-table-filter="two-step" data-hide-search="true">
             <option></option>
             <option value="{{ $role->name }}">{{ $role->name }}</option>
-            <option value="pool">pool</option>
+
         </select>
     </div>
     <!--end::Input group-->
@@ -435,16 +439,24 @@
             <td class="d-flex align-items-center">
                 <!--begin:: Avatar -->
                 <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                    <a href="view.html">
+                    <a href="{{ route('users.show',$user->id) }}">
                                                         <div class="symbol-label">
-                                <img src="{{ asset('html/assets/assets/media/avatars/300-6.jpg')}}" alt="{{ $user->name }}" class="w-100" />
+                    <?php $image = "";?>
+                    <?php
+                    if ($user->avatar == NULL || !isset($user->avatar) ){
+                           $image =  'unnamed.png';
+                    }else {
+                       $image =  $user->avatar;
+                    }
+                    ?>
+                                <img src="{{ Storage::url('images/staffavatar/'.$image)}}" alt="{{ $user->name }}" class="w-100" />
                             </div>
                                                 </a>
                 </div>
                 <!--end::Avatar-->
                 <!--begin::User details-->
                 <div class="d-flex flex-column">
-                    <a href="view.html" class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
+                    <a href="{{ route('users.show',$user->id) }}" class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
                     <span>{{ $user->email }}</span>
                 </div>
                 <!--begin::User details-->
@@ -452,8 +464,18 @@
 
             <td>
                 @if(!empty($user->getRoleNames()))
-                    @foreach($user->getRoleNames() as $val)
-                        <label class="badge badge-dark">{{ $val }}</label>
+                    @foreach($user->getRoleNames() as  $val)
+                        @php
+                             $u = Role::where('roles.name',"=",$val)
+                                ->get();
+
+                        @endphp
+                        <label class="
+                        @php
+                        foreach ($u as $key => $value) {
+                            echo $value->badge;
+                        }
+                    @endphp">{{ $val }}</label>
                     @endforeach
                 @endif
             </td>
@@ -492,9 +514,10 @@
                             <div class="menu-item px-3" >
                                 {!! Form::open(['id'=>'kt_modal_del_user_form','method' => 'DELETE','route' => ['users.destroy', $user->id],]) !!}
                                     <input type="hidden"  value="{{ $user->name }}">
-                                {!! Form::submit('Delete', ['class' => "menu-link px-3" ,'data-kt-users-table-filter'=>"delete_row"]) !!}
+                                {!! Form::submit('Delete', ['class' => "menu-link px-3" ,]) !!}
                                 {!! Form::close() !!}
                             </div>
+
                             <!--end::Menu item-->
                             @endcan
 

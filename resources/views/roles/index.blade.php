@@ -11,15 +11,15 @@ use Spatie\Permission\Models\Role;
                 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
                     <!--begin::Content wrapper-->
                     <div class="d-flex flex-column flex-column-fluid">
-                                                
+
     <!--begin::Toolbar-->
     <div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 ">
-    
+
                 <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container  container-xxl d-flex flex-stack ">
-                
-        
-    
+
+
+
     <!--begin::Page title-->
     <div  class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
         <!--begin::Title-->
@@ -27,9 +27,9 @@ use Spatie\Permission\Models\Role;
             Roles List
                 </h1>
         <!--end::Title-->
-     
 
-                
+
+
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                                 <!--begin::Item-->
@@ -43,7 +43,7 @@ use Spatie\Permission\Models\Role;
                             <span class="bullet bg-gray-400 w-5px h-2px"></span>
                         </li>
                         <!--end::Item-->
-                                            
+
                                 <!--begin::Item-->
                                         <li class="breadcrumb-item text-muted">
                                                         User Management                                            </li>
@@ -53,12 +53,12 @@ use Spatie\Permission\Models\Role;
                             <span class="bullet bg-gray-400 w-5px h-2px"></span>
                         </li>
                         <!--end::Item-->
-                                            
+
                                 <!--begin::Item-->
                                         <li class="breadcrumb-item text-muted">
                                                         Roles                                            </li>
                                     <!--end::Item-->
-                                            
+
                         </ul>
             <!--end::Breadcrumb-->
         </div>
@@ -69,13 +69,13 @@ use Spatie\Permission\Models\Role;
             <div class="m-0">
                 <!--begin::Menu toggle-->
                 <a href="#" class="btn btn-sm btn-flex bg-body btn-color-gray-700 btn-active-color-primary fw-bold" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                    <i class="ki-duotone ki-filter fs-6 text-muted me-1"><span class="path1"></span><span class="path2"></span></i>               
+                    <i class="ki-duotone ki-filter fs-6 text-muted me-1"><span class="path1"></span><span class="path2"></span></i>
                     Filter
                 </a>
                 <!--end::Menu toggle-->
-                
-                
-    
+
+
+
     <!--begin::Menu 1-->
             <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true" id="kt_menu_648698624af08">
                 <!--begin::Header-->
@@ -83,100 +83,54 @@ use Spatie\Permission\Models\Role;
                     <div class="fs-5 text-dark fw-bold">Filter Options</div>
                 </div>
                 <!--end::Header-->
-            
+
                 <!--begin::Menu separator-->
                 <div class="separator border-gray-200"></div>
                 <!--end::Menu separator-->
-            
+
                 <!--begin::Form-->
                 <div class="px-7 py-5">
                     <!--begin::Input group-->
                     <div class="mb-10">
                         <!--begin::Label-->
-                        <label class="form-label fw-semibold">Status:</label>
+                        <label class="form-label fw-semibold">Roles:</label>
                         <!--end::Label-->
-            
+
                         <!--begin::Input-->
                         <div>
                             <select class="form-select form-select-solid" data-kt-select2="true" data-placeholder="Select option" data-dropdown-parent="#kt_menu_648698624af08" data-allow-clear="true">
                                 <option></option>
-                                <option value="1">Approved</option>
-                                <option value="2">Pending</option>
-                                <option value="2">In Process</option>
-                                <option value="2">Rejected</option>
+                                @foreach ($role as $r )
+                                    <option value="{{ $r->name }}">{{ $r->name }}</option>
+                                @endforeach
+
                             </select>
                         </div>
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
-            
-                    <!--begin::Input group-->
-                    <div class="mb-10">
-                        <!--begin::Label-->
-                        <label class="form-label fw-semibold">Member Type:</label>
-                        <!--end::Label-->
-            
-                        <!--begin::Options-->
-                        <div class="d-flex">
-                            <!--begin::Options-->    
-                            <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-                                <input class="form-check-input" type="checkbox" value="1"/>
-                                <span class="form-check-label">
-                                    Author
-                                </span>
-                            </label>
-                            <!--end::Options-->    
-            
-                            <!--begin::Options-->    
-                            <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                <input class="form-check-input" type="checkbox" value="2" checked="checked"/>
-                                <span class="form-check-label">
-                                    Customer
-                                </span>
-                            </label>
-                            <!--end::Options-->    
-                        </div>        
-                        <!--end::Options-->    
-                    </div>
-                    <!--end::Input group-->
-            
-                    <!--begin::Input group-->
-                    <div class="mb-10">
-                        <!--begin::Label-->
-                        <label class="form-label fw-semibold">Notifications:</label>
-                        <!--end::Label-->
-            
-                        <!--begin::Switch-->
-                        <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-                            <input class="form-check-input" type="checkbox" value="" name="notifications" checked />
-                            <label class="form-check-label">
-                                Enabled
-                            </label>
-                        </div>
-                        <!--end::Switch-->
-                    </div>
-                    <!--end::Input group-->
-            
+
+
                     <!--begin::Actions-->
                     <div class="d-flex justify-content-end">
                         <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true">Reset</button>
-            
+
                         <button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Apply</button>
                     </div>
                     <!--end::Actions-->
                 </div>
                 <!--end::Form-->
             </div>
-    <!--end::Menu 1-->       
+    <!--end::Menu 1-->
      </div>
             <!--end::Filter menu-->
-        
-        
+
+
         <!--begin::Secondary button-->
-        
+
             <!--end::Secondary button-->
-        
-      
+
+
            </div>
     <!--end::Actions-->
 
@@ -207,20 +161,20 @@ use Spatie\Permission\Models\Role;
             <!--end::Toolbar container-->
 
  </div>
-    <!--end::Toolbar-->                                        
-          
-    
+    <!--end::Toolbar-->
+
+
 
     <!--begin::Content-->
     <div id="kt_app_content" class="app-content  flex-column-fluid " >
-        
-               
+
+
             <!--begin::Content container-->
             <div id="kt_app_content_container" class="app-container  container-xxl ">
-               
+
     <!--begin::Row-->
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-5 g-xl-9">
-       
+
         @foreach ($roles as $role )
              <!--begin::Col-->
             <div class="col-md-4">
@@ -230,27 +184,39 @@ use Spatie\Permission\Models\Role;
                     <div class="card-header">
                         <!--begin::Card title-->
                         <div class="card-title">
-                            <h2>{{ $role->name }}</h2>
+                            <h2>{{ $role->name }}</h2>&nbsp;
+                            <h2 class="{{ $role->badge }}">Role Badge</h2>
                         </div>
                         <!--end::Card title-->
                     </div>
-                   
+
                     <!--end::Card header-->
-    
+
                     <!--begin::Card body-->
                     <div class="card-body pt-1">
                         <!--begin::Users-->
-                     <?php  
+                     <?php
                         // $roles = Role::orderBy('name','DESC')->get();
                         // foreach ($roles as $role => $value) {
                             $roles_num =  DB::table('model_has_roles')->where('role_id',$role->id)->count();
+                            $role_permissions = $role->permissions->pluck('name')->take(3);
                         // }
 
                         ?>
                         <div class="fw-bold text-gray-600 mb-5">Total users with this role: {{ $roles_num }}</div>
                         <!--end::Users-->
-                            
-                <!--begin::Users group-->
+                        <div class="d-flex flex-column text-gray-600">
+                         <!--begin::Permissions-->
+                        @foreach ($role_permissions as $role_permission)
+
+                        <div class="d-flex align-items-center py-2"><span class="bullet bg-primary me-3"></span> {{$role_permission}}</div>
+
+                        @endforeach
+                         <div class='d-flex align-items-center py-2'><span class='bullet bg-primary me-3'></span> @can('role-list')<a href="{{ route('roles.show',$role->id) }}" <em>...and more</a>@endcan</em></div>
+                    </div>
+<!--end::Permissions-->
+
+                {{-- <!--begin::Users group-->
                 <div class="symbol-group symbol-hover mb-9">
                     <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Alan Warden">
                                     <span class="symbol-label bg-warning text-inverse-warning fw-bold">A</span>
@@ -258,67 +224,44 @@ use Spatie\Permission\Models\Role;
                     <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Michael Eberon">
                                     <img alt="Pic" src="{{ asset('html/assets/assets/media/avatars/300-11.jpg')}}" />
                             </div>
-                    <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Michelle Swanston">
-                                    <img alt="Pic" src="{{ asset('html/assets/assets/media/avatars/300-7.jpg')}}" />
-                            </div>
-                    <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Francis Mitcham">
-                                    <img alt="Pic" src="{{ asset('html/assets/assets/media/avatars/300-20.jpg')}}" />
-                            </div>
-                    <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Susan Redwood">
-                                    <span class="symbol-label bg-primary text-inverse-primary fw-bold">S</span>
-                            </div>
-                    <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Melody Macy">
-                                    <img alt="Pic" src="{{ asset('html/assets/assets/media/avatars/300-2.jpg')}}" />
-                            </div>
-                    <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Perry Matthew">
-                                    <span class="symbol-label bg-info text-inverse-info fw-bold">P</span>
-                            </div>
-                    <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Barry Walter">
-                                    <img alt="Pic" src="{{ asset('html/assets/assets/media/avatars/300-12.jpg')}}" />
-                            </div>
-                <a href="#" class="symbol symbol-35px symbol-circle"  data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
-        <span class="symbol-label bg-dark text-gray-300 fs-8 fw-bold">+42</span>
-    </a>
-</div>
-<!--end::Users group-->
-                       
+
+                                <a href="#" class="symbol symbol-35px symbol-circle"  data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
+                        <span class="symbol-label bg-dark text-gray-300 fs-8 fw-bold">+42</span>
+                    </a>
+                </div>
+                <!--end::Users group--> --}}
+
                     </div>
                     <!--end::Card body-->
-    
+
                     <!--begin::Card footer-->
                     <div class="card-footer flex-wrap pt-3">
 
                         @can('role-list')
                         <a href="{{ route('roles.show',$role->id) }}" class="btn btn-light btn-sm  btn-active-primary my-1 me-2">View </a>
                         @endcan
-                        
-                        @can('role-edit')
-                        <a href="{{ route('roles.edit',$role->id) }}" class="btn btn-light btn-sm btn-active-success my-1" >Edit </a>
+
+                        @can('role-updateuserrole')
+                        <a href="{{ route('roles.adduser',$role->id) }}" class="btn btn-light btn-sm btn-active-success my-1" >Add User </a>
                         @endcan
-                       
+
                         @can('role-delete')
                         {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'class' => 'btn my-1 me-2 ']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xm btn-active-light-danger my-1']) !!}
                         {!! Form::close() !!}
                         @endcan
                     </div>
-                    <!--end::Card footer-->  
-                    @can('role-updateuserrole')
-                    <!--begin::Add user-->
-                    <a href="{{ route('roles.adduser',$role->id) }}" type="button" class="btn btn-light btn-sm  btn-active-primary my-1 me-2 ">
-                        <i class="ki-duotone ki-plus fs-2"></i>        Add User
-                    </a>
-                    <!--end::Add user-->
-                    @endcan
+                    <!--end::Card footer-->
+
                 </div>
                 <!--end::Card-->
-                 
+
             </div>
             <!--end::Col-->
-              
+
         @endforeach
-       
-        
+
+
         <!--begin::Add new card-->
         <div class="ol-md-4">
             <!--begin::Card-->
@@ -328,9 +271,9 @@ use Spatie\Permission\Models\Role;
                     <!--begin::Button-->
                     <button type="button" class="btn btn-clear d-flex flex-column flex-center" data-bs-toggle="modal" data-bs-target="#kt_modal_add_role">
                         <!--begin::Illustration-->
-                        <img src="{{ asset('html/assets/assets/media/logos/4.png') }}" alt="" class="mw-100 mh-150px mb-7"/>                      
+                        <img src="{{ asset('html/assets/assets/media/logos/4.png') }}" alt="" class="mw-100 mh-150px mb-7"/>
                         <!--end::Illustration-->
-    
+
                         <!--begin::Label-->
                         <div class="fw-bold fs-3 text-gray-600 text-hover-primary">Add New Role</div>
                         <!--end::Label-->
@@ -344,9 +287,9 @@ use Spatie\Permission\Models\Role;
         <!--begin::Add new card-->
     </div>
     <!--end::Row-->
-    
+
     <!--begin::Modals-->
-    
+
     <!--begin::Modal - Add role-->
     <div class="modal fade" id="kt_modal_add_role" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
@@ -358,14 +301,14 @@ use Spatie\Permission\Models\Role;
                     <!--begin::Modal title-->
                     <h2 class="fw-bold">Add a Role</h2>
                     <!--end::Modal title-->
-    
+
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-roles-modal-action="close">
                         <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>                </div>
                     <!--end::Close-->
-                </div>
+                   </div>
                 <!--end::Modal header-->
-    
+
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y mx-lg-5 my-7">
                     <!--begin::Form-->
@@ -380,21 +323,45 @@ use Spatie\Permission\Models\Role;
                                     <span class="required">Role name</span>
                                 </label>
                                 <!--end::Label-->
-    
+
                                 <!--begin::Input-->
                                 <input class="form-control form-control-solid" placeholder="Enter a role name" name="name" />
                                 <!--end::Input-->
                             </div>
 
-                            
-                          
-                         
+
+                             <!--begin::Input group-->
+                             <div class="fv-row mb-10">
+                                <!--begin::Label-->
+                                <label class="fs-5 fw-bold form-label mb-2">
+                                    <span class="required">Role badge</span>
+                                </label>
+                                <!--end::Label-->
+
+                                <!--begin::Input-->
+                                <select name="badge" class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-user-table-filter="two-step" data-hide-search="true">
+                                    <option></option>
+                                    <option value="badge badge-light">Light grey</option>
+                                    <option value="badge badge-dark"> Dark</option>
+                                    <option value="badge badge-primary">Blue</option>
+                                    <option value="badge badge-secondary">Light blue</option>
+                                    <option value="badge badge-success">Light green</option>
+                                    <option value="badge badge-info">Purple</option>
+                                    <option value="badge badge-warning">Yellow</option>
+                                    <option value="badge badge-danger">Red</option>
+                               </select>
+                                <!--end::Input-->
+                            </div>
+
+
+
+
                             <!--begin::Permissions-->
                             <div class="fv-row">
                                 <!--begin::Label-->
                                 <label class="fs-5 fw-bold form-label mb-2">Role Permissions</label>
                                 <!--end::Label-->
-    
+
                                 <!--begin::Table wrapper-->
                                 <div class="table-responsive">
                                     <!--begin::Table-->
@@ -405,7 +372,7 @@ use Spatie\Permission\Models\Role;
                                             <tr>
                                                 <td class="text-gray-800">
                                                     Administrator Access
-    
+
                                                     <span class="ms-2" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-html="true" data-bs-content="Allows a full access to the system">
                                                         <i class="ki-duotone ki-information fs-7"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>                                                </span>
                                                 </td>
@@ -421,22 +388,22 @@ use Spatie\Permission\Models\Role;
                                                 </td>
                                             </tr>
                                             <!--end::Table row-->
-                                                
-                          
+
+
                                               @foreach (array_unique($perm_title) as $value)
                                              <?php
                                               $permission = Permission::where('title',$value)->get();
                                               $word="";
-                                            
+
                                              ?>
-                                         
-                                            <tr>   
+
+                                            <tr>
                                                <!--begin::Label-->
                                                <td class="text-gray-800">{{ $value }}</td>
                                                <!--end::Label-->
-                                            
-                                            
-                                              @foreach ($permission as $key => $v) 
+
+
+                                              @foreach ($permission as $key => $v)
                                               <?php
                                                     if(strpos($v->name, "list")){
                                                         $word = "View";
@@ -472,8 +439,8 @@ use Spatie\Permission\Models\Role;
                                             <!--end::Options-->
                                                @endforeach
                                         </tr>
-                                             
-                                            
+
+
                                             @endforeach
 
 
@@ -490,13 +457,13 @@ use Spatie\Permission\Models\Role;
                             <!--end::Permissions-->
                         </div>
                         <!--end::Scroll-->
-    
+
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
                             <button type="reset" class="btn btn-light me-3" data-kt-roles-modal-action="cancel">
                                 Discard
                             </button>
-    
+
                             <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit">
                                 <span class="indicator-label">
                                     Submit
@@ -531,14 +498,14 @@ use Spatie\Permission\Models\Role;
                     <!--begin::Modal title-->
                     <h2 class="fw-bold">Update Role</h2>
                     <!--end::Modal title-->
-    
+
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-roles-modal-action="close">
                         <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>                </div>
                     <!--end::Close-->
                 </div>
                 <!--end::Modal header-->
-    
+
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y mx-5 my-7">
                     <!--begin::Form-->
@@ -552,19 +519,19 @@ use Spatie\Permission\Models\Role;
                                     <span class="required">Role name {{ $role->id }}</span>
                                 </label>
                                 <!--end::Label-->
-    
+
                                 <!--begin::Input-->
                                 <input class="form-control form-control-solid" placeholder="Enter a role name" name="role_name" value="Developer" />
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
-    
+
                             <!--begin::Permissions-->
                             <div class="fv-row">
                                 <!--begin::Label-->
                                 <label class="fs-5 fw-bold form-label mb-2">Role Permissions</label>
                                 <!--end::Label-->
-    
+
                                 <!--begin::Table wrapper-->
                                 <div class="table-responsive">
                                     <!--begin::Table-->
@@ -575,12 +542,12 @@ use Spatie\Permission\Models\Role;
                                             <tr>
                                                 <td class="text-gray-800">
                                                     Administrator Access
-    
-                                                    
+
+
                                                     <span class="ms-1"  data-bs-toggle="tooltip" title="Allows a full access to the system" >
                                                         <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
                                                             <span class="path1"></span><span class="path2">
-                                                                </span><span class="path3"></span></i></span>                                          
+                                                                </span><span class="path3"></span></i></span>
                                                 </td>
                                                 <td>
                                                     <!--begin::Checkbox-->
@@ -595,21 +562,21 @@ use Spatie\Permission\Models\Role;
                                             </tr>
                                             <!--end::Table row-->
                                              <!--begin::Table row-->
-                                              
+
                                              @foreach (array_unique($perm_title) as $value)
                                              <?php
                                               $permission = Permission::where('title',$value)->get();
                                               $word="";
-                                            
+
                                              ?>
-                                         
-                                            <tr>   
+
+                                            <tr>
                                                <!--begin::Label-->
                                                <td class="text-gray-800">{{ $value }}</td>
                                                <!--end::Label-->
-                                            
-                                            
-                                              @foreach ($permission as $key => $v) 
+
+
+                                              @foreach ($permission as $key => $v)
                                               <?php
                                                     if(strpos($v->name, "list")){
                                                         $word = "View";
@@ -653,13 +620,13 @@ use Spatie\Permission\Models\Role;
                             <!--end::Permissions-->
                         </div>
                         <!--end::Scroll-->
-    
+
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
                             <button type="reset" class="btn btn-light me-3" data-kt-roles-modal-action="cancel">
                                 Discard
                             </button>
-    
+
                             <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit">
                                 <span class="indicator-label">
                                     Submit
@@ -679,11 +646,11 @@ use Spatie\Permission\Models\Role;
         </div>
         <!--end::Modal dialog-->
     </div>
-    <!--end::Modal - Update role--><!--end::Modals-->       
+    <!--end::Modal - Update role--><!--end::Modals-->
 
        </div>
             <!--end::Content container-->
         </div>
-    <!--end::Content-->					
- 
-@endsection   
+    <!--end::Content-->
+
+@endsection

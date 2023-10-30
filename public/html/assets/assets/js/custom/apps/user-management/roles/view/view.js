@@ -27,7 +27,7 @@ var KTUsersViewRole = function () {
                 { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
                 { orderable: false, targets: 4 }, // Disable ordering on column 4 (actions)
             ]
-        });        
+        });
     }
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
@@ -52,11 +52,13 @@ var KTUsersViewRole = function () {
                 const parent = e.target.closest('tr');
 
                 // Get customer name
-                const userName = parent.querySelectorAll('td')[1].innerText;
+                const userName = parent.querySelectorAll('td')[2].innerText;
+                var userURL = $(this).data('url');
+
 
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
-                    text: "Are you sure you want to delete " + userName + "?",
+                    html: "Are you sure you want to delete <br> "+ userName + " from this role?",
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: false,
@@ -69,16 +71,44 @@ var KTUsersViewRole = function () {
                 }).then(function (result) {
                     if (result.value) {
                         Swal.fire({
-                            text: "You have deleted " + userName + "!.",
+                            text: "You have romoved " + userName + " from this role!.",
                             icon: "success",
                             buttonsStyling: false,
                             confirmButtonText: "Ok, got it!",
                             customClass: {
                                 confirmButton: "btn fw-bold btn-primary",
                             }
-                        }).then(function () {
-                            // Remove current row
+                        }).then(function (e) {
                             datatable.row($(parent)).remove().draw();
+
+                                if (e.value === true) {
+                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                    var id = 1;
+
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: userURL,
+                                      //  data: {_token: CSRF_TOKEN},
+                                        dataType: 'JSON',
+                                        success: function (results) {
+                                            if (results.success === true) {
+
+                                                swal.fire("Done!", results.message, "success");
+                                                // refresh page after 2 seconds
+                                               // setTimeout(function(){
+                                                 //   location.reload();
+                                              //  },1000);
+                                            } else {
+                                                swal.fire("Error!", results.message, "error");
+                                            }
+                                        }
+                                    });
+
+                                } else {
+                                    e.dismiss;
+                                }
+
+
                         });
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
@@ -118,8 +148,9 @@ var KTUsersViewRole = function () {
         // Deleted selected rows
         deleteSelected.addEventListener('click', function () {
             // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
+
             Swal.fire({
-                text: "Are you sure you want to delete selected customers?",
+                text: "Are you sure you want to romove selected User?",
                 icon: "warning",
                 showCancelButton: true,
                 buttonsStyling: false,
@@ -132,7 +163,7 @@ var KTUsersViewRole = function () {
             }).then(function (result) {
                 if (result.value) {
                     Swal.fire({
-                        text: "You have deleted all selected customers!.",
+                        text: "You have deleted  selected User(s)!.",
                         icon: "success",
                         buttonsStyling: false,
                         confirmButtonText: "Ok, got it!",
@@ -140,9 +171,35 @@ var KTUsersViewRole = function () {
                             confirmButton: "btn fw-bold btn-primary",
                         }
                     }).then(function () {
-                        // Remove all selected customers
+                        // Remove all selected User
                         checkboxes.forEach(c => {
                             if (c.checked) {
+                                if (e.value === true) {
+                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                    var id = 1;
+
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: userURL,
+                                      //  data: {_token: CSRF_TOKEN},
+                                        dataType: 'JSON',
+                                        success: function (results) {
+                                            if (results.success === true) {
+
+                                                swal.fire("Done!", results.message, "success");
+                                                // refresh page after 2 seconds
+                                               // setTimeout(function(){
+                                                 //   location.reload();
+                                              //  },1000);
+                                            } else {
+                                                swal.fire("Error!", results.message, "error");
+                                            }
+                                        }
+                                    });
+
+                                } else {
+                                    e.dismiss;
+                                }
                                 datatable.row($(c.closest('tbody tr'))).remove().draw();
                             }
                         });
@@ -156,7 +213,7 @@ var KTUsersViewRole = function () {
                     });
                 } else if (result.dismiss === 'cancel') {
                     Swal.fire({
-                        text: "Selected customers was not deleted.",
+                        text: "Selected User was not deleted.",
                         icon: "error",
                         buttonsStyling: false,
                         confirmButtonText: "Ok, got it!",
@@ -176,7 +233,7 @@ var KTUsersViewRole = function () {
         const toolbarSelected = document.querySelector('[data-kt-view-roles-table-toolbar="selected"]');
         const selectedCount = document.querySelector('[data-kt-view-roles-table-select="selected_count"]');
 
-        // Select refreshed checkbox DOM elements 
+        // Select refreshed checkbox DOM elements
         const allCheckboxes = table.querySelectorAll('tbody [type="checkbox"]');
 
         // Detect checkboxes state & count
@@ -206,7 +263,7 @@ var KTUsersViewRole = function () {
         // Public functions
         init: function () {
             table = document.querySelector('#kt_roles_view_table');
-            
+
             if (!table) {
                 return;
             }
@@ -223,3 +280,6 @@ var KTUsersViewRole = function () {
 KTUtil.onDOMContentLoaded(function () {
     KTUsersViewRole.init();
 });
+
+
+

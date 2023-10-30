@@ -9,9 +9,8 @@
 <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
     <!--begin::Logo image-->
     <a href="../index.html">
-                    <img alt="Logo" src="../assets/media/logos/default-dark.svg" class="h-25px app-sidebar-logo-default"/>
-
-        <img alt="Logo" src="../assets/media/logos/default-small.svg" class="h-20px app-sidebar-logo-minimize"/>
+                    <img alt="Logo" src="{{ asset('html/assets/assets/media/logos/logo1.png') }}"
+                     class="h-65px app-sidebar-logo-default" style="margin-left: 70px"/>
     </a>
     <!--end::Logo image-->
 
@@ -59,7 +58,9 @@
             data-kt-menu-expand="false">
 
             <!--begin:Menu item-->
-            <div  data-kt-menu-trigger="click"  class="menu-item here  menu-accordion" >
+            <div  data-kt-menu-trigger="click"  class="menu-item {{
+                request()->is('dashboard')
+                ? ' here show menu-accordion' : '' }}" >
                 <!--begin:Menu link-->
                 <span class="menu-link" >
                     <span  class="menu-icon" >
@@ -80,59 +81,42 @@
                                         <!--begin:Menu item-->
                                         <div  class="menu-item" >
                                             <!--begin:Menu link-->
-                                            <a class="menu-link"  href="../index.html" >
+                                            <a class="menu-link"  href="/dashboard" >
                                                 <span  class="menu-bullet" >
                                                     <span class="bullet bullet-dot">
                                                         </span>
                                                     </span>
                                                     <span  class="menu-title" >
-                                                        Default
+                                                      Dashboard
                                                     </span>
                                             </a>
                                             <!--end:Menu link-->
                                         </div>
                                         <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div  class="menu-item" >
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"  href="ecommerce.html" >
-                                                <span  class="menu-bullet" >
-                                                    <span class="bullet bullet-dot">
-                                                        </span>
-                                                    </span>
-                                                    <span  class="menu-title" >
-                                                        eCommerce
-                                                    </span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div  class="menu-item" >
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link "  href="projects.html" >
-                                                    <span  class="menu-bullet" >
-                                                        <span class="bullet bullet-dot">
-                                                            </span></span>
-                                                            <span  class="menu-title" >
-                                                                Projects</span>
-                                                </a>
-                                               <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-
-
-
-
                                     </div>
                                   <!--end:Menu sub-->
             </div>
             <!--end:Menu item-->
 
 
+             <!--begin:Menu item-->
+             <div  class="menu-item pt-5" >
+                <!--begin:Menu content-->
+                <div  class="menu-content" >
+                    <span class="menu-heading fw-bold text-uppercase fs-7">
+                        USERS & PRIVILEGES
+                    </span>
+                    </div>
+                    <!--end:Menu content-->
+                </div>
+                <!--end:Menu item-->
 
                <!--begin:Menu item-->
-               <div  data-kt-menu-trigger="click"  class="{{ request()->is('users*') ? 'menu-item here show menu-accordion' : '' }}" >
+               <div  data-kt-menu-trigger="click"  class="menu-item {{
+               request()->is('users*') ||
+               request()->is('roles*') ||
+               request()->is('permissions*')
+               ? ' here show menu-accordion' : '' }}" >
                 <!--begin:Menu link-->
                 <span class="menu-link" >
                     <span  class="menu-icon" >
@@ -153,7 +137,8 @@
                                         <!--begin:Menu item-->
                                         <div  class="menu-item" >
                                             <!--begin:Menu link-->
-                                            <a class="menu-link"  href="{{ route('users.index') }}" >
+                                            <a class="menu-link  {{ request()->is('users*')
+                                                ? ' active' : '' }}"  href="{{ route('users.index') }}" >
                                                 <span  class="menu-bullet" >
                                                     <span class="bullet bullet-dot">
                                                         </span>
@@ -168,7 +153,9 @@
                                         <!--begin:Menu item-->
                                         <div  class="menu-item" >
                                             <!--begin:Menu link-->
-                                            <a class="menu-link"  href="{{ route('roles.index') }}" >
+                                            <a class="menu-link {{ request()->is('roles*')
+                                                ? ' active' : '' }}"
+                                             href="{{ route('roles.index') }}" >
                                                 <span  class="menu-bullet" >
                                                     <span class="bullet bullet-dot">
                                                         </span>
@@ -183,12 +170,15 @@
                                             <!--begin:Menu item-->
                                          <div  class="menu-item" >
                                                 <!--begin:Menu link-->
-                                                <a class="menu-link "  href="projects.html" >
+                                                <a class="menu-link {{ request()->is('permissions*')
+                                                    ? ' active' : '' }}"
+                                                  href="{{ route('permissions.index') }}" >
                                                     <span  class="menu-bullet" >
                                                         <span class="bullet bullet-dot">
                                                             </span></span>
                                                             <span  class="menu-title" >
-                                                                Projects</span>
+                                                               Permissions List
+                                                            </span>
                                                 </a>
                                                <!--end:Menu link-->
                                         </div>
@@ -200,38 +190,450 @@
 
 
 
+
+              <!--begin:Menu item-->
+              <div  class="menu-item pt-5" >
+                <!--begin:Menu content-->
+                <div  class="menu-content" >
+                    <span class="menu-heading fw-bold text-uppercase fs-7">
+                       APPS MANAGEMENT
+                    </span>
+                    </div>
+                    <!--end:Menu content-->
+                </div>
+                <!--end:Menu item-->
+
+               <!--begin:Menu item-->
+               <div  data-kt-menu-trigger="click"  class="menu-item {{
+                   request()->is('overview*') ||
+                    request()->is('settings*')
+                    ? ' here show menu-accordion' : '' }}" >
+                <!--begin:Menu link-->
+                <span class="menu-link" >
+                    <span  class="menu-icon" >
+                        <i class="ki-duotone ki-element-11 fs-2">
+                            <span class="path1">
+                                </span><span class="path2">
+                                </span><span class="path3">
+                                </span><span class="path4">
+                                </span></i></span>
+                                <span  class="menu-title" >
+                                 My Account
+                                </span>
+                                <span  class="menu-arrow" >
+                                    </span></span>
+                                    <!--end:Menu link-->
+                                    <!--begin:Menu sub-->
+                                 <div  class="menu-sub menu-sub-accordion" >
+                                        <!--begin:Menu item-->
+                                        <div  class="menu-item" >
+                                            <!--begin:Menu link-->
+                                            <a class="menu-link  {{ request()->is('user.overview')
+                                                ? ' active' : '' }}"  href="{{ route('user.overview',Auth::user()->id) }}" >
+                                                <span  class="menu-bullet" >
+                                                    <span class="bullet bullet-dot">
+                                                        </span>
+                                                    </span>
+                                                    <span  class="menu-title" >
+                                                      Overview
+                                                    </span>
+                                            </a>
+                                            <!--end:Menu link-->
+                                        </div>
+                                        <!--end:Menu item-->
+                                        <!--begin:Menu item-->
+                                        <div  class="menu-item" >
+                                            <!--begin:Menu link-->
+                                            <a class="menu-link {{ request()->is('settings*')
+                                                ? ' active' : '' }}"
+                                             href="{{ route('user.settings',Auth::user()->id) }}" >
+                                                <span  class="menu-bullet" >
+                                                    <span class="bullet bullet-dot">
+                                                        </span>
+                                                    </span>
+                                                    <span  class="menu-title" >
+                                                     Settings
+                                                    </span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                        </div>
+                                            <!--end:Menu item-->
+
+                                </div>
+                                  <!--end:Menu sub-->
+            </div>
+            <!--end:Menu item-->
+
+
+             <!--begin:Menu item-->
+             <div  data-kt-menu-trigger="click"  class="menu-item {{
+                request()->is('authors*') ||
+                request()->is('roles*') ||
+                request()->is('permissions*')
+                ? ' here show menu-accordion' : '' }}" >
+            <!--begin:Menu link-->
+            <span class="menu-link" >
+                <span  class="menu-icon" >
+                    <i class="ki-duotone ki-element-11 fs-2">
+                        <span class="path1">
+                            </span><span class="path2">
+                            </span><span class="path3">
+                            </span><span class="path4">
+                            </span></i></span>
+                            <span  class="menu-title" >
+                              Journal Management
+                            </span>
+                            <span  class="menu-arrow" >
+                                </span></span>
+                                <!--end:Menu link-->
+                                <!--begin:Menu sub-->
+                             <div  class="menu-sub menu-sub-accordion" >
+                                @can('author-list')
+                                    <!--begin:Menu item-->
+                                    <div  class="menu-item" >
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link  {{ request()->is('author*')
+                                            ? ' active' : '' }}"  href="{{ route('authors.index') }}" >
+                                            <span  class="menu-bullet" >
+                                                <span class="bullet bullet-dot">
+                                                    </span>
+                                                </span>
+                                                <span  class="menu-title" >
+                                                  Manage  Authors
+                                                </span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <!--end:Menu item-->
+                                 @endcan
+                                    <!--begin:Menu item-->
+                                    <div  class="menu-item" >
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link {{ request()->is('roles*')
+                                            ? ' active' : '' }}"
+                                         href="{{ route('roles.index') }}" >
+                                            <span  class="menu-bullet" >
+                                                <span class="bullet bullet-dot">
+                                                    </span>
+                                                </span>
+                                                <span  class="menu-title" >
+                                                 Manage   Publihers
+                                                </span>
+                                            </a>
+                                            <!--end:Menu link-->
+                                    </div>
+                                        <!--end:Menu item-->
+                                        <!--begin:Menu item-->
+                                     <div  class="menu-item" >
+                                            <!--begin:Menu link-->
+                                            <a class="menu-link {{ request()->is('permissions*')
+                                                ? ' active' : '' }}"
+                                              href="{{ route('permissions.index') }}" >
+                                                <span  class="menu-bullet" >
+                                                    <span class="bullet bullet-dot">
+                                                        </span></span>
+                                                        <span  class="menu-title" >
+                                                        Manage  Reviewers
+                                                        </span>
+                                            </a>
+                                           <!--end:Menu link-->
+                                    </div>
+                                        <!--end:Menu item-->
+                                     <!--begin:Menu item-->
+                                     <div  class="menu-item" >
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link {{ request()->is('permissions*')
+                                            ? ' active' : '' }}"
+                                          href="{{ route('permissions.index') }}" >
+                                            <span  class="menu-bullet" >
+                                                <span class="bullet bullet-dot">
+                                                    </span></span>
+                                                    <span  class="menu-title" >
+                                                     Manage Editors
+                                                    </span>
+                                        </a>
+                                       <!--end:Menu link-->
+                                     </div>
+                                    <!--end:Menu item-->
+
+
+                                    <!--begin:Menu item-->
+                                    <div  class="menu-item" >
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link {{ request()->is('permissions*')
+                                            ? ' active' : '' }}"
+                                          href="{{ route('permissions.index') }}" >
+                                            <span  class="menu-bullet" >
+                                                <span class="bullet bullet-dot">
+                                                    </span></span>
+                                                    <span  class="menu-title" >
+                                                    Manage Journals
+                                                    </span>
+                                        </a>
+                                       <!--end:Menu link-->
+                                     </div>
+                                    <!--end:Menu item-->
+
+
+                                     <!--begin:Menu item-->
+                                     <div  class="menu-item" >
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link {{ request()->is('permissions*')
+                                            ? ' active' : '' }}"
+                                          href="{{ route('permissions.index') }}" >
+                                            <span  class="menu-bullet" >
+                                                <span class="bullet bullet-dot">
+                                                    </span></span>
+                                                    <span  class="menu-title" >
+                                                    Manage Editions
+                                                    </span>
+                                        </a>
+                                       <!--end:Menu link-->
+                                     </div>
+                                    <!--end:Menu item-->
+
+                                      <!--begin:Menu item-->
+                                      <div  class="menu-item" >
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link {{ request()->is('permissions*')
+                                            ? ' active' : '' }}"
+                                          href="{{ route('permissions.index') }}" >
+                                            <span  class="menu-bullet" >
+                                                <span class="bullet bullet-dot">
+                                                    </span></span>
+                                                    <span  class="menu-title" >
+                                                      Manage Publishing
+                                                    </span>
+                                        </a>
+                                       <!--end:Menu link-->
+                                     </div>
+                                    <!--end:Menu item-->
+
+                                     <!--begin:Menu item-->
+                                     <div  class="menu-item" >
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link {{ request()->is('permissions*')
+                                            ? ' active' : '' }}"
+                                          href="{{ route('permissions.index') }}" >
+                                            <span  class="menu-bullet" >
+                                                <span class="bullet bullet-dot">
+                                                    </span></span>
+                                                    <span  class="menu-title" >
+                                                      Manage Email Templates
+                                                    </span>
+                                        </a>
+                                       <!--end:Menu link-->
+                                     </div>
+                                    <!--end:Menu item-->
+                            </div>
+                              <!--end:Menu sub-->
+        </div>
+        <!--end:Menu item-->
+
+
+
+
             <!--begin:Menu item-->
             <div  class="menu-item pt-5" >
                 <!--begin:Menu content-->
                 <div  class="menu-content" >
                     <span class="menu-heading fw-bold text-uppercase fs-7">
-                        Pages</span>
+                        APPS
+                    </span>
                     </div>
                     <!--end:Menu content-->
-                </div>
-                <!--end:Menu item-->
+            </div>
+            <!--end:Menu item-->
+
+                       <!--begin:Menu item-->
+                       <div  data-kt-menu-trigger="click"  class="menu-item {{
+                        request()->is('journalcategory*') ||
+                        request()->is('journalvolume*')  ||
+                        request()->is('journalyear*')
+                        ? ' here show menu-accordion' : '' }}" >
+                        <!--begin:Menu link-->
+                        <span class="menu-link" >
+                            <span  class="menu-icon" >
+                                <i class="ki-duotone ki-element-11 fs-2">
+                                    <span class="path1">
+                                        </span><span class="path2">
+                                        </span><span class="path3">
+                                        </span><span class="path4">
+                                        </span></i></span>
+                                        <span  class="menu-title" >
+                                           Journals & Publications
+                                        </span>
+                                        <span  class="menu-arrow" >
+                                            </span></span>
+                                            <!--end:Menu link-->
+                                            <!--begin:Menu sub-->
+                                        <div  class="menu-sub menu-sub-accordion" >
+                                                <!--begin:Menu item-->
+                                                <div  class="menu-item" >
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link  {{ request()->is('journalcategory*')
+                                                        ? ' active' : '' }}"  href="{{ route('journalcategory.index') }}" >
+                                                        <span  class="menu-bullet" >
+                                                            <span class="bullet bullet-dot">
+                                                                </span>
+                                                            </span>
+                                                            <span  class="menu-title" >
+                                                               My Journals
+                                                            </span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                                <!--end:Menu item-->
+                                                <!--begin:Menu item-->
+                                                <div  class="menu-item" >
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link  {{ request()->is('journalvolume*')
+                                                        ? ' active' : '' }}"  href="{{ route('journalvolume.index') }}" >
+                                                        <span  class="menu-bullet" >
+                                                            <span class="bullet bullet-dot">
+                                                                </span>
+                                                            </span>
+                                                            <span  class="menu-title" >
+                                                                Journals Under Review
+                                                            </span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                                <!--end:Menu item-->
+                                                    <!--begin:Menu item-->
+                                                <div  class="menu-item" >
+                                                        <!--begin:Menu link-->
+                                                        <a class="menu-link {{ request()->is('journalyear*')
+                                                            ? ' active' : '' }}"
+                                                        href="{{ route('journalyear.index') }}" >
+                                                            <span  class="menu-bullet" >
+                                                                <span class="bullet bullet-dot">
+                                                                    </span></span>
+                                                                    <span  class="menu-title" >
+                                                                       Published Journals
+                                                                    </span>
+                                                        </a>
+                                                        <!--end:Menu link-->
+                                                </div>
+                                                    <!--end:Menu item-->
+
+                                                <!--begin:Menu item-->
+                                                <div  class="menu-item" >
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link {{ request()->is('journalyear*')
+                                                        ? ' active' : '' }}"
+                                                    href="{{ route('journalyear.index') }}" >
+                                                        <span  class="menu-bullet" >
+                                                            <span class="bullet bullet-dot">
+                                                                </span></span>
+                                                                <span  class="menu-title" >
+                                                                  Editorials
+                                                                </span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                            </div>
+                                                <!--end:Menu item-->
+                                        </div>
+                                        <!--end:Menu sub-->
+                    </div>
+                    <!--end:Menu item-->
+
+
+            <!--begin:Menu item-->
+            <div  class="menu-item pt-5" >
+                <!--begin:Menu content-->
+                <div  class="menu-content" >
+                    <span class="menu-heading fw-bold text-uppercase fs-7">
+                        INSTITUTION BASIC SETTING
+                    </span>
+                    </div>
+                    <!--end:Menu content-->
+            </div>
+            <!--end:Menu item-->
+
+            <!--begin:Menu item-->
+            <div  data-kt-menu-trigger="click"  class="menu-item {{
+                request()->is('journalcategory*') ||
+                request()->is('journalvolume*')  ||
+                request()->is('journalyear*')
+                ? ' here show menu-accordion' : '' }}" >
+                <!--begin:Menu link-->
+                <span class="menu-link" >
+                    <span  class="menu-icon" >
+                        <i class="ki-duotone ki-element-11 fs-2">
+                            <span class="path1">
+                                </span><span class="path2">
+                                </span><span class="path3">
+                                </span><span class="path4">
+                                </span></i></span>
+                                <span  class="menu-title" >
+                                    Journal Setting
+                                </span>
+                                <span  class="menu-arrow" >
+                                    </span></span>
+                                    <!--end:Menu link-->
+                                    <!--begin:Menu sub-->
+                                <div  class="menu-sub menu-sub-accordion" >
+                                        <!--begin:Menu item-->
+                                        <div  class="menu-item" >
+                                            <!--begin:Menu link-->
+                                            <a class="menu-link  {{ request()->is('journalcategory*')
+                                                ? ' active' : '' }}"  href="{{ route('journalcategory.index') }}" >
+                                                <span  class="menu-bullet" >
+                                                    <span class="bullet bullet-dot">
+                                                        </span>
+                                                    </span>
+                                                    <span  class="menu-title" >
+                                                        Category Management
+                                                    </span>
+                                            </a>
+                                            <!--end:Menu link-->
+                                        </div>
+                                        <!--end:Menu item-->
+                                        <!--begin:Menu item-->
+                                        <div  class="menu-item" >
+                                            <!--begin:Menu link-->
+                                            <a class="menu-link  {{ request()->is('journalvolume*')
+                                                ? ' active' : '' }}"  href="{{ route('journalvolume.index') }}" >
+                                                <span  class="menu-bullet" >
+                                                    <span class="bullet bullet-dot">
+                                                        </span>
+                                                    </span>
+                                                    <span  class="menu-title" >
+                                                        Volume Management
+                                                    </span>
+                                            </a>
+                                            <!--end:Menu link-->
+                                        </div>
+                                        <!--end:Menu item-->
+                                            <!--begin:Menu item-->
+                                        <div  class="menu-item" >
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link {{ request()->is('journalyear*')
+                                                    ? ' active' : '' }}"
+                                                href="{{ route('journalyear.index') }}" >
+                                                    <span  class="menu-bullet" >
+                                                        <span class="bullet bullet-dot">
+                                                            </span></span>
+                                                            <span  class="menu-title" >
+                                                                Journal Year Management
+                                                            </span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                        </div>
+                                            <!--end:Menu item-->
+                                </div>
+                                <!--end:Menu sub-->
+            </div>
+            <!--end:Menu item-->
+
+
                 </div>
                 <!--end::Menu -->
             </div>
     <!--end::Menu wrapper-->
 </div>
 <!--end::sidebar menu-->
-<!--begin::Footer-->
-<div class="app-sidebar-footer flex-column-auto pt-2 pb-6 px-6" id="kt_app_sidebar_footer">
-    <a
-        href="https://preview.keenthemes.com/html/metronic/docs"
-        class="btn btn-flex flex-center btn-custom btn-primary overflow-hidden text-nowrap px-0 h-40px w-100"
-        data-bs-toggle="tooltip"
-        data-bs-trigger="hover"
-        data-bs-dismiss-="click"
-        title="200+ in-house components and 3rd-party plugins">
 
-        <span class="btn-label">
-            Docs & Components
-        </span>
-
-        <i class="ki-duotone ki-document btn-icon fs-2 m-0"><span class="path1"></span><span class="path2"></span></i>    </a>
-</div>
-<!--end::Footer-->
 </div>
 <!--end::Sidebar-->

@@ -8,6 +8,7 @@
         <meta charset="utf-8"/>
         <meta name="description" content=" "/>
         <meta name="keywords" content=""/>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
         <link rel="shortcut icon" href="{{ asset('html/assets/assets/media/logos/favicon.ico')}}"/>
@@ -21,6 +22,12 @@
         @if (Route::is('users.*'))
             @include('layouts.pages-assets.css.users-list-css')
         @endif
+        @if (Route::is('user.overview'))
+            @include('layouts.pages-assets.css.users-list-css')
+        @endif
+        @if (Route::is('user.settings'))
+             @include('layouts.pages-assets.css.users-list-css')
+        @endif
         @if (Route::is('roles.*'))
             @include('layouts.pages-assets.css.users-list-css')
         @endif
@@ -31,19 +38,22 @@
         @if (Route::is('journalcategory.*'))
            @include('layouts.pages-assets.css.users-list-css')
        @endif
+       @if (Route::is('journalvolume.*'))
+           @include('layouts.pages-assets.css.users-list-css')
+       @endif
+       @if (Route::is('journalyear.*'))
+           @include('layouts.pages-assets.css.users-list-css')
+       @endif
+       @if (Route::is('authors.*') || Route::is('author.review') || Route::is('author.journal')  )
+            @include('layouts.pages-assets.css.users-list-css')
+       @endif
+       {{-- @if (Route::is('review.*'))
+           @include('layouts.pages-assets.css.users-list-css')
+       @endif --}}
 
 
-        <!--begin::Vendor Stylesheets(used for this page only)-->
-        <link href="{{ asset('html/assets/assets/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css"/>
-        <!--end::Vendor Stylesheets-->
 
 
-        <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-            <link href="{{ asset('html/assets/assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css"/>
-            <link href="{{ asset('html/assets/assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css"/>
-        <!--end::Global Stylesheets Bundle-->
-            </head>
-            <!--end::Head-->
 
             <!--begin::Body-->
     <body  id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true"  class="app-default" >
@@ -198,6 +208,12 @@
         @if (Route::is('users.*'))
               @include('layouts.pages-assets.js.users-list-js')
         @endif
+        @if (Route::is('user.overview'))
+              @include('layouts.pages-assets.js.users-list-js')
+        @endif
+        @if (Route::is('user.settings'))
+             @include('layouts.pages-assets.js.users-list-js')
+        @endif
         @if (Route::is('roles.*'))
              @include('layouts.pages-assets.js.role-list-js')
         @endif
@@ -212,26 +228,14 @@
         @if (Route::is('journalvolume.*'))
              @include('layouts.pages-assets.js.journalvolume-list-js')
         @endif
+        @if (Route::is('journalyear.*'))
+             @include('layouts.pages-assets.js.journalvolume-list-js')
+        @endif
+        @if (Route::is('authors.*') || Route::is('author.review') || Route::is('author.journal'))
+            @include('layouts.pages-assets.js.journal-list-js')
+        @endif
 
-     <!-- begin::Global Javascript Bundle(mandatory for all pages)-->
-      <!-- <script src="{{ asset('html/assets/assets/plugins/global/plugins.bundle.js')}}"></script>
-      <script src="{{ asset('html/assets/assets/js/scripts.bundle.js')}}"></script> -->
-  <!--end::Global Javascript Bundle-->
 
-<!--begin::Vendors Javascript(used for this page only)-->
-      <!-- <script src="{{ asset('html/assets/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script> -->
-  <!--end::Vendors Javascript-->
-
-<!--begin::Custom Javascript(used for this page only)-->
-      <!-- <script src="{{ asset('html/assets/assets/js/custom/apps/user-management/permissions/list.js')}}"></script>
-      <script src="{{ asset('html/assets/assets/js/custom/apps/user-management/permissions/add-permission.js')}}"></script>
-      <script src="{{ asset('html/assets/assets/js/custom/apps/user-management/permissions/update-permission.js')}}"></script>
-      <script src="{{ asset('html/assets/assets/js/widgets.bundle.js')}}"></script>
-      <script src="{{ asset('html/assets/assets/js/custom/widgets.js')}}"></script>
-      <script src="{{ asset('html/assets/assets/js/custom/apps/chat/chat.js')}}"></script>
-      <script src="{{ asset('html/assets/assets/js/custom/utilities/modals/upgrade-plan.js')}}"></script>
-      <script src="{{ asset('html/assets/assets/js/custom/utilities/modals/create-app.js')}}"></script>
-      <script src="{{ asset('html/assets/assets/js/custom/utilities/modals/users-search.js')}}"></script> -->
   <!--end::Custom Javascript-->
 
 

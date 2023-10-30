@@ -28,10 +28,17 @@ var KTAccountSettingsProfileDetails = function () {
                             }
                         }
                     },
-                    company: {
+                    onames: {
                         validators: {
                             notEmpty: {
-                                message: 'Company name is required'
+                                message: 'Other names is required'
+                            }
+                        }
+                    },
+                    address: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Address is required'
                             }
                         }
                     },
@@ -42,39 +49,33 @@ var KTAccountSettingsProfileDetails = function () {
                             }
                         }
                     },
-                    country: {
+                    dob: {
                         validators: {
                             notEmpty: {
-                                message: 'Please select a country'
+                                message: 'Please enter date of birth'
                             }
                         }
                     },
-                    timezone: {
+                    'gender[]': {
                         validators: {
                             notEmpty: {
-                                message: 'Please select a timezone'
+                                message: 'Please select at least one gender'
                             }
                         }
                     },
-                    'communication[]': {
+                    'maritalstatus[]': {
                         validators: {
                             notEmpty: {
-                                message: 'Please select at least one communication method'
+                                message: 'Please select at least one marital status'
                             }
                         }
                     },
-                    language: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please select a language'
-                            }
-                        }
-                    },
+
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
                     submitButton: new FormValidation.plugins.SubmitButton(),
-                    //defaultSubmit: new FormValidation.plugins.DefaultSubmit(), // Uncomment this line to enable normal button submit after form validation
+                    defaultSubmit: new FormValidation.plugins.DefaultSubmit(), // Uncomment this line to enable normal button submit after form validation
                     bootstrap: new FormValidation.plugins.Bootstrap5({
                         rowSelector: '.fv-row',
                         eleInvalidClass: '',
@@ -85,20 +86,20 @@ var KTAccountSettingsProfileDetails = function () {
         );
 
         // Select2 validation integration
-        $(form.querySelector('[name="country"]')).on('change', function() {
-            // Revalidate the color field when an option is chosen
-            validation.revalidateField('country');
-        });
+        // $(form.querySelector('[name="country"]')).on('change', function() {
+        //     // Revalidate the color field when an option is chosen
+        //     validation.revalidateField('country');
+        // });
 
-        $(form.querySelector('[name="language"]')).on('change', function() {
-            // Revalidate the color field when an option is chosen
-            validation.revalidateField('language');
-        });
+        // $(form.querySelector('[name="language"]')).on('change', function() {
+        //     // Revalidate the color field when an option is chosen
+        //     validation.revalidateField('language');
+        // });
 
-        $(form.querySelector('[name="timezone"]')).on('change', function() {
-            // Revalidate the color field when an option is chosen
-            validation.revalidateField('timezone');
-        });
+        // $(form.querySelector('[name="timezone"]')).on('change', function() {
+        //     // Revalidate the color field when an option is chosen
+        //     validation.revalidateField('timezone');
+        // });
     }
 
     var handleForm = function () {
@@ -137,7 +138,7 @@ var KTAccountSettingsProfileDetails = function () {
     return {
         init: function () {
             form = document.getElementById('kt_account_profile_details_form');
-            
+
             if (!form) {
                 return;
             }

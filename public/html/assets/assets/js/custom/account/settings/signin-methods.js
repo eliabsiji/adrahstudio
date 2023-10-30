@@ -25,10 +25,10 @@ var KTAccountSettingsSigninMethods = function () {
     }
 
     // Private functions
-    var initSettings = function () {  
+    var initSettings = function () {
         if (!signInMainEl) {
             return;
-        }        
+        }
 
         // toggle UI
         signInChangeEmail.querySelector('button').addEventListener('click', function () {
@@ -49,7 +49,7 @@ var KTAccountSettingsSigninMethods = function () {
     }
 
     var handleChangeEmail = function (e) {
-        var validation;        
+        var validation;
 
         if (!signInForm) {
             return;
@@ -70,10 +70,10 @@ var KTAccountSettingsSigninMethods = function () {
                         }
                     },
 
-                    confirmemailpassword: {
+                    confirmemail: {
                         validators: {
                             notEmpty: {
-                                message: 'Password is required'
+                                message: 'confirm Email is required'
                             }
                         }
                     }
@@ -91,22 +91,49 @@ var KTAccountSettingsSigninMethods = function () {
         signInForm.querySelector('#kt_signin_submit').addEventListener('click', function (e) {
             e.preventDefault();
             console.log('click');
-
+        var userid = document.getElementById("userid").value;
+        var emailaddress = document.getElementById("emailaddress").value;
             validation.validate().then(function (status) {
                 if (status == 'Valid') {
-                    swal.fire({
-                        text: "Sent password reset. Please check your email",
-                        icon: "success",
-                        buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
-                        customClass: {
-                            confirmButton: "btn font-weight-bold btn-light-primary"
+                    $.ajaxSetup({
+                        headers: {
+                                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
-                    }).then(function(){
-                        signInForm.reset();
-                        validation.resetForm(); // Reset formvalidation --- more info: https://formvalidation.io/guide/api/reset-form/
-                        toggleChangeEmail();
+                     });
+                  //  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                    $.ajax({
+                        type: 'POST',
+                        url     :"/ajaxemailupdate",
+                        data: {userid:userid,emailaddress:emailaddress},
+                        dataType: 'JSON',
+                        success: function (results) {
+                            if (results.success) {
+                                swal.fire({
+                                    text: " " + results.message,
+                                    icon: "success",
+                                    buttonsStyling: false,
+                                    confirmButtonText: "Ok, got it!",
+                                    customClass: {
+                                        confirmButton: "btn font-weight-bold btn-light-primary"
+                                    }
+                                }).then(function(){
+                                    // refresh page after 2 seconds
+                                    setTimeout(function(){
+                                    location.reload();
+                                    },500);
+                                    signInForm.reset();
+                                    validation.resetForm(); // Reset formvalidation --- more info: https://formvalidation.io/guide/api/reset-form/
+                                    toggleChangeEmail();
+                                });
+
+                            } else {
+                               console.log(results);
+                                swal.fire("Error!", results.message, "error");
+                            }
+                        }
                     });
+
                 } else {
                     swal.fire({
                         text: "Sorry, looks like there are some errors detected, please try again.",
@@ -179,22 +206,50 @@ var KTAccountSettingsSigninMethods = function () {
         passwordForm.querySelector('#kt_password_submit').addEventListener('click', function (e) {
             e.preventDefault();
             console.log('click');
+            var userid = document.getElementById("pid").value;
+            var npword = document.getElementById("newpassword").value;
+
 
             validation.validate().then(function (status) {
                 if (status == 'Valid') {
-                    swal.fire({
-                        text: "Sent password reset. Please check your email",
-                        icon: "success",
-                        buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
-                        customClass: {
-                            confirmButton: "btn font-weight-bold btn-light-primary"
+                    $.ajaxSetup({
+                        headers: {
+                                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
-                    }).then(function(){
-                        passwordForm.reset();
-                        validation.resetForm(); // Reset formvalidation --- more info: https://formvalidation.io/guide/api/reset-form/
-                        toggleChangePassword();
+                     });
+
+                    $.ajax({
+                        type: 'POST',
+                        url     :"/ajaxpasswordupdate",
+                        data: {userid:userid,password:npword},
+                        dataType: 'JSON',
+                        success: function (results) {
+                            if (results.success) {
+                                swal.fire({
+                                    text: " "+ results.message,
+                                    icon: "success",
+                                    buttonsStyling: false,
+                                    confirmButtonText: "Ok, got it!",
+                                    customClass: {
+                                        confirmButton: "btn font-weight-bold btn-light-primary"
+                                    }
+                                }).then(function(){
+                                    // refresh page after 2 seconds
+                                    setTimeout(function(){
+                                    location.reload();
+                                    },500);
+                                    signInForm.reset();
+                                    validation.resetForm(); // Reset formvalidation --- more info: https://formvalidation.io/guide/api/reset-form/
+                                    toggleChangeEmail();
+                                });
+
+                            } else {
+                               console.log(results);
+                                swal.fire("Error!", results.message, "error");
+                            }
+                        }
                     });
+
                 } else {
                     swal.fire({
                         text: "Sorry, looks like there are some errors detected, please try again.",

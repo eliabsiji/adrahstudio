@@ -27,8 +27,9 @@ class CreatePermissionTables extends Migration
 
         Schema::create($tableNames['permissions'], function (Blueprint $table) {
             $table->bigIncrements('id'); // permission id
-            $table->string('name');   
-            $table->string('title')->nullable();    
+            $table->string('name');
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
             $table->timestamps();
 
@@ -37,11 +38,13 @@ class CreatePermissionTables extends Migration
 
         Schema::create($tableNames['roles'], function (Blueprint $table) use ($teams, $columnNames) {
             $table->bigIncrements('id'); // role id
+
             if ($teams || config('permission.testing')) { // permission.testing is a fix for sqlite testing
                 $table->unsignedBigInteger($columnNames['team_foreign_key'])->nullable();
                 $table->index($columnNames['team_foreign_key'], 'roles_team_foreign_key_index');
             }
             $table->string('name');       // For MySQL 8.0 use string('name', 125);
+            $table->string('badge')->nullable();       // For MySQL 8.0 use string('badge', 125);
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
             $table->timestamps();
             if ($teams || config('permission.testing')) {

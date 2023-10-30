@@ -2,14 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\Pictures\ImageModel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\PermissionRegistrar;
 use Spatie\Permission\Traits\HasRoles;
+
+
 
 
 class User extends Authenticatable
@@ -24,6 +29,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'avatar',
         'password',
         'wpassword',
     ];
@@ -50,7 +56,7 @@ class User extends Authenticatable
 
     public function staffPicture(): HasOne
     {
-        return $this->hasOne(StaffPictureModel::class,'staff_id');
+        return $this->hasOne(ImageModel::class,'user_id');
     }
 
     /**
@@ -68,14 +74,27 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function staffBio(): HasOne
+    public function bio(): HasOne
     {
-        return $this->hasOne(staffBioModel::class);
+        return $this->hasOne(BioModel::class);
     }
 
     public function journal(): HasMany
     {
         return $this->hasMany(Journals::class,'user_id');
-    }
+    }// User model
+
+
+    public function roles_all(): BelongsToMany
+    {
+        return $this->morphToMany(
+            config('permission.models.role'),
+            'model',
+            config('permission.table_names.model_has_roles'),
+            config('permission.column_names.model_morph_key'),
+            PermissionRegistrar::$pivotRole
+        );
+}
+
 
 }

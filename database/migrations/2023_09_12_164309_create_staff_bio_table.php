@@ -19,14 +19,15 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')
                                         ->on('users')->onUpdate('cascade')->onDelete('cascade');
            // $table->foreignId('user_id')->contrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('othernames');
-            $table->string('phone');
-            $table->string('address');
-            $table->string('maritalstatus');
-            $table->string('nationality');
-            $table->string('dob');
-            $table->string('pob');
-            $table->string('dept');
+            $table->string('firstname')->nullable()->default("no info");
+            $table->string('lastname')->nullable()->default("no info");
+            $table->string('othernames')->nullable()->default("no info");
+            $table->string('phone')->nullable()->default("no info");
+            $table->string('address')->nullable()->default("no info");
+            $table->string('gender')->nullable()->default("no info");
+            $table->string('maritalstatus')->nullable()->default("no info");
+            $table->string('nationality')->nullable()->default("no info");
+            $table->string('dob')->nullable()->default("no info");
             $table->timestamps();
         });
     }

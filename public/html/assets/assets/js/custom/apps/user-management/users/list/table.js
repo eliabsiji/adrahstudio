@@ -3,9 +3,6 @@
 var KTUsersList = function () {
     // Define shared variables
     var table = document.getElementById('kt_table_users');
-    const element = document.getElementById('del_user');
-   // const form = element.querySelector('#kt_modal_add_user_form');
-    const form = element.querySelector('#kt_modal_del_user_form');
     var datatable;
     var toolbarBase;
     var toolbarSelected;
@@ -143,7 +140,7 @@ var KTUsersList = function () {
                 const parent = e.target.closest('tr');
 
                 // Get user name
-              const userName = document.getElementById('userid').value;
+                const userName = parent.querySelectorAll('td')[1].querySelectorAll('a')[1].innerText;
 
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
@@ -169,9 +166,7 @@ var KTUsersList = function () {
                             }
                         }).then(function () {
                             // Remove current row
-                              form.submit() // Submit form
                             datatable.row($(parent)).remove().draw();
-
                         }).then(function () {
                             // Detect checked checkboxes
                             toggleToolbars();

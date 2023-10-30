@@ -5,14 +5,14 @@
  <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
                 <!--begin::Content wrapper-->
                 <div class="d-flex flex-column flex-column-fluid">
-                                            
+
 <!--begin::Toolbar-->
 <div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 " >
-   
+
             <!--begin::Toolbar container-->
         <div id="kt_app_toolbar_container" class="app-container  container-xxl d-flex flex-stack ">
-            
-       
+
+
 
 <!--begin::Page title-->
 <div  class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
@@ -22,7 +22,7 @@
             </h1>
     <!--end::Title-->
 
-            
+
         <!--begin::Breadcrumb-->
         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <!--begin::Item-->
@@ -36,12 +36,12 @@
                         <span class="bullet bg-gray-400 w-5px h-2px"></span>
                     </li>
                     <!--end::Item-->
-                                        
+
                             <!--begin::Item-->
                                     <li class="breadcrumb-item text-muted">
                                                    User Management                                           </li>
                                 <!--end::Item-->
-                                        
+
                     </ul>
         <!--end::Breadcrumb-->
     </div>
@@ -50,11 +50,11 @@
         </div>
         <!--end::Toolbar container-->
     </div>
-<!--end::Toolbar-->                                        
-                    
+<!--end::Toolbar-->
+
 <!--begin::Content-->
 <div id="kt_app_content" class="app-content  flex-column-fluid " >
-    
+
     @if ($errors->any())
     <div class="alert alert-danger">
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -81,18 +81,18 @@
 
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container  container-xxl ">
-            
+
 
 <!--end::Navbar-->
 <!--begin::Basic info-->
 <div class="card mb-5 mb-xl-10">
- 
-   
+
+
  <!--begin::Toolbar-->
  <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
     <!--begin::Filter-->
     <a href="{{ route('roles.index') }}" type="button" class="btn btn-light-primary me-3" >
-        <i class="ki-duotone fs-2"><span class="path1"></span><span class="path2"></span></i>   << Back  
+        <i class="ki-duotone fs-2"><span class="path1"></span><span class="path2"></span></i>   << Back
     </a>
     <!--begin::Menu 1-->
     <div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true">
@@ -101,18 +101,18 @@
         <a href="" class="fs-5 text-dark fw-bold"> </a>
     </div>
     <!--end::Header-->
-    
+
     <!--begin::Separator-->
     <div class="separator border-gray-200"></div>
     <!--end::Separator-->
-    
-   
+
+
     </div>
     <!--end::Menu 1-->    <!--end::Filter-->
-    
-    
-    
-   
+
+
+
+
     </div>
     <!--end::Toolbar-->
 
@@ -120,14 +120,14 @@
 
     <!--begin::Content-->
     <div id="kt_account_settings_profile_details" class="collapse show">
-       
+
         <!--begin::Basic info-->
 <div class="card mb-5 mb-xl-10">
     <!--begin::Card header-->
     <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
         <!--begin::Card title-->
         <div class="card-title m-0">
-            <h3 class="fw-bold m-0">Profile Details</h3>
+            <h3 class="fw-bold m-0">Add User to {{ $role->name }} role</h3>
         </div>
         <!--end::Card title-->
     </div>
@@ -140,8 +140,8 @@
             @csrf
             <!--begin::Card body-->
             <div class="card-body border-top p-9">
-              
-               
+
+
 
                 <!--begin::Input group-->
                 <div class="row mb-6">
@@ -158,18 +158,18 @@
                 </div>
                 <!--end::Input group-->
 
-              
 
-                
+
+
                 <!--begin::Input group-->
                 <div class="row mb-6">
                     <!--begin::Label-->
                     <label class="col-lg-4 col-form-label fw-semibold fs-6">
-                        <span class="required">User</span>     
+                        <span class="required">User</span>
                         <span class="ms-1"  data-bs-toggle="tooltip" title="Select User for this role" >
                             <i class="ki-duotone ki-information-5 text-gray-500 fs-6"><span class="path1">
                                 </span><span class="path2"></span><span class="path3"></span></i>
-                            </span>                   
+                            </span>
                         </label>
                     <!--end::Label-->
 
@@ -180,8 +180,8 @@
                             @foreach ($users as $user )
                                <option value="{{ $user->id }}">{{ $user->name }}</option>
                            @endforeach
-                            
-                                                            
+
+
                          </select>
                     </div>
                     <!--end::Col-->
@@ -189,9 +189,9 @@
                 <!--end::Input group-->
 
 
-          
 
-               
+
+
             </div>
             <!--end::Card body-->
 
@@ -207,7 +207,7 @@
     <!--end::Content-->
 </div>
 <!--end::Basic info-->
-      
+
     </div>
     <!--end::Content-->
 </div>
@@ -218,5 +218,5 @@
     </div>
         <!--end::Content container-->
     </div>
-<!--end::Content-->					
-@endsection   
+<!--end::Content-->
+@endsection

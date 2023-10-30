@@ -149,6 +149,35 @@
                     </div>
                     <!--end::Input group-->
 
+
+                     <!--begin::Input group-->
+                     <div class="fv-row mb-10">
+                        <!--begin::Label-->
+                        <label class="fs-5 fw-bold form-label mb-2">
+                            <span class="required">Role badge</span>
+                        </label>
+                        <!--end::Label-->
+
+                        <!--begin::Input-->
+                        <select name="badge" class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-user-table-filter="two-step" data-hide-search="true">
+                            <option></option>
+                            <option value="badge badge-light">Light grey</option>
+                            <option value="badge badge-dark"> Dark</option>
+                            <option value="badge badge-primary">Blue</option>
+                            <option value="badge badge-secondary">Light blue</option>
+                            <option value="badge badge-success">Light green</option>
+                            <option value="badge badge-info">Purple</option>
+                            <option value="badge badge-warning">Yellow</option>
+                            <option value="badge badge-danger">Red</option>
+                       </select>
+                        <!--end::Input-->
+                    </div>
+
+
+
+
+
+
                     <!--begin::Permissions-->
                     <div class="fv-row">
                         <!--begin::Label-->

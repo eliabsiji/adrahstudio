@@ -52,7 +52,7 @@ use PharIo\Manifest\Author;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();

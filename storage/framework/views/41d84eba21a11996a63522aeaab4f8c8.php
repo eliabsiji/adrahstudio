@@ -271,7 +271,7 @@ Create        </a>
             <td>
                 <div class="text-dark gap-1 pt-2">
                     <!--begin::Heading-->
-                    <a href="reply.html" class="text-dark">
+                    <a href="<?php echo e(route('author.journal',$user->id)); ?>" class="text-dark">
                         <span class="fw-bold">Digital PPV Customer Confirmation</span>
                         <span class="fw-bold d-none d-md-inine"> - </span>
                         <span class="d-none d-md-inine text-muted">Thank you for ordering UFC 240 Holloway vs Edgar Alternate camera angles...</span>
